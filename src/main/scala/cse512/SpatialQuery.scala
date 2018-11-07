@@ -6,12 +6,12 @@ import scala.math._
 object SpatialQuery extends App{
     def ST_Contains(arg1: String, arg2: String): Boolean = {
             //split point
-            val result = arg1.split(",")
+            val result = arg2.split(",")
             val x = result(0).toDouble
             val y = result(1).toDouble
 
             //split rectangle points
-            val rect_vals = arg2.split(",")
+            val rect_vals = arg1.split(",")
             val x1 = rect_vals(0).toDouble
             val y1 = rect_vals(1).toDouble
             val x2 = rect_vals(2).toDouble
