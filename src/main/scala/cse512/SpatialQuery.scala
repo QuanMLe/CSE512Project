@@ -4,8 +4,8 @@ import org.apache.spark.sql.SparkSession
 import scala.math._
 
 object SpatialQuery extends App{
-    var area = (x1: Int, y1: Int, x2: Int, y2: Int, x3: Int, y3: Int) => {
-        Math.abs((x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2))/2)
+    def area(x1: Int, y1: Int, x2: Int, y2: Int, x3: Int, y3: Int): Double = {
+        return Math.abs((x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2))/2)
     }
     def ST_Contains(arg1: String, arg2: String): Boolean = {
             //split point
@@ -28,10 +28,10 @@ object SpatialQuery extends App{
             val A4 = area(x, y, x1, y1, x2, y2)
             
             if (A == (A1 + A2 + A3 + A4)){
-                true
+                return true
             }
             else{
-                false
+                return false
             }
         }    
 
