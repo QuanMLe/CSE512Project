@@ -18,11 +18,17 @@ object SpatialQuery extends App{
             val y2 = rect_vals(3).toDouble
 
             //Checks if the coordinates are within the rectangle
-            if ((x >= x1 && x <= x2) && (y >= y1 && y <= y2)){
-                return true
+            val A = area(x1, y1, x2, y1, x1, y2) + area(x1, y1, x2, y2, x1, y2)
+            val A1 = area(x, y, x1, y1, x2, y1)
+            val A2 = area(x, y, x2, y1, x1, y2)
+            val A3 = area(x, y, x1, y2, x2, y2)
+            val A4 = area(x, y, x1, y1, x2, y2)
+            
+            if (A == (A1 + A2 + A3 + A4)){
+                true
             }
             else{
-                return false
+                false
             }
         }    
 
