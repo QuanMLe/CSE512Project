@@ -4,30 +4,21 @@ import org.apache.spark.sql.SparkSession
 import scala.math._
 
 object SpatialQuery extends App{
-    def area(x1: Int, y1: Int, x2: Int, y2: Int, x3: Int, y3: Int): Double = {
-        return Math.abs((x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2))/2)
-    }
-    def ST_Contains(arg1: String, arg2: String): Boolean = {
+    def ST_Contains(queryRectangle: String, pointString: String): Boolean = {
             //split point
-            val result = arg2.split(",")
+            val result = pointString.split(",")
             val x = result(0).toDouble
             val y = result(1).toDouble
 
             //split rectangle points
-            val rect_vals = arg1.split(",")
+            val rect_vals = queryRectangle.split(",")
             val x1 = rect_vals(0).toDouble
             val y1 = rect_vals(1).toDouble
             val x2 = rect_vals(2).toDouble
             val y2 = rect_vals(3).toDouble
 
             //Checks if the coordinates are within the rectangle
-            val A = area(x1, y1, x2, y1, x1, y2) + area(x1, y1, x2, y2, x1, y2)
-            val A1 = area(x, y, x1, y1, x2, y1)
-            val A2 = area(x, y, x2, y1, x1, y2)
-            val A3 = area(x, y, x1, y2, x2, y2)
-            val A4 = area(x, y, x1, y1, x2, y2)
-            
-            if (A == (A1 + A2 + A3 + A4)){
+            if ((x >= x1 && x <= x2) && (y >= y1 && y <= y2)){
                 return true
             }
             else{
@@ -35,16 +26,16 @@ object SpatialQuery extends App{
             }
         }    
 
-    def ST_Within(arg1: String, arg2: String, arg3: Double): Boolean = {
-        val r1 = arg1.split(",")
+    def ST_Within(pointString1: String, pointString2: String, distance: Double): Boolean = {
+        val r1 = pointString1.split(",")
         val r1x = r1(0).toDouble
         val r1y = r1(1).toDouble
 
-        val r2 = arg2.split(",")
+        val r2 = pointString2.split(",")
         val r2x = r2(0).toDouble
         val r2y = r2(1).toDouble
 
-        val dist = arg3
+        val dist = distance
         val pt_dist = Math.sqrt(((r2x-r1x)*(r2x-r1x))+((r2y-r1y)*(r2y-r1y)))
         if (pt_dist <= dist){
             return true
