@@ -1,0 +1,13 @@
+[0m[[0m[31merror[0m] [0m[0m/home/ubuntu/CSE512-Project-Phase1-Template/src/main/scala/cse512/SparkSQLExample.scala:63:21: not found: value SpatialQuery[0m
+[0m[[0m[31merror[0m] [0m[0m      queryResult = SpatialQuery.runRangeQuery(spark, queryParam(0), queryParam(1))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/ubuntu/CSE512-Project-Phase1-Template/src/main/scala/cse512/SparkSQLExample.scala:68:21: not found: value SpatialQuery[0m
+[0m[[0m[31merror[0m] [0m[0m      queryResult = SpatialQuery.runRangeJoinQuery(spark, queryParam(0), queryParam(1))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/ubuntu/CSE512-Project-Phase1-Template/src/main/scala/cse512/SparkSQLExample.scala:73:21: not found: value SpatialQuery[0m
+[0m[[0m[31merror[0m] [0m[0m      queryResult = SpatialQuery.runDistanceQuery(spark, queryParam(0), queryParam(1), queryParam(2))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/ubuntu/CSE512-Project-Phase1-Template/src/main/scala/cse512/SparkSQLExample.scala:78:21: not found: value SpatialQuery[0m
+[0m[[0m[31merror[0m] [0m[0m      queryResult = SpatialQuery.runDistanceJoinQuery(spark, queryParam(0), queryParam(1), queryParam(2))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mfour errors found[0m
