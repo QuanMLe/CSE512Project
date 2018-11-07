@@ -11,7 +11,7 @@ object SpatialQuery extends App{
         pointDf.createOrReplaceTempView("point")
 
         // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION
-        val ST_Contains = (arg1: String, arg2: String) => {
+        def ST_Contains(arg1: String, arg2: String): Boolean => {
             //split point
             val result = arg1.split(",")
             val x = result(0).toInt
@@ -26,10 +26,10 @@ object SpatialQuery extends App{
 
             //Checks if the coordinates are within the rectangle
             if ((x >= x1 && x <= x2) && (y >= y1 && y <= y2)){
-                true
+                return true
             }
             else{
-                false
+                return false
             }
         }
 
@@ -52,7 +52,7 @@ object SpatialQuery extends App{
         rectangleDf.createOrReplaceTempView("rectangle")
 
         // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION
-        val ST_Contains = (arg1: String, arg2: String) => {
+        def ST_Contains(arg1: String, arg2: String): Boolean => {
         //split point
             val result = arg1.split(",")
             val x = result(0).toInt
@@ -67,10 +67,10 @@ object SpatialQuery extends App{
 
             //Checks if the coordinates are within the rectangle
             if ((x >= x1 && x <= x2) && (y >= y1 && y <= y2)){
-                true
+                return true
             }
             else{
-                false
+                return false
             }
         }
 
@@ -89,7 +89,7 @@ object SpatialQuery extends App{
         pointDf.createOrReplaceTempView("point")
 
         // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION
-        val ST_Within = (arg1: String, arg2: String, arg3: String) => {
+        def ST_Within(arg1: String, arg2: String, arg3: String): Boolean => {
             val r1 = arg1.split(",")
             val r1x = r1(0).toInt
             val r1y = r1(1).toInt
@@ -101,10 +101,10 @@ object SpatialQuery extends App{
             val dist = arg3.toDouble
             val pt_dist = Math.sqrt(((r2x-r1x)*(r2x-r1x))+((r2y-r1y)*(r2y-r1y)))
             if (pt_dist <= dist){
-                true
+                return true
             }
             else{
-                false
+                return false
             }
         }
 
@@ -126,7 +126,7 @@ object SpatialQuery extends App{
         pointDf2.createOrReplaceTempView("point2")
 
         // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION
-        val ST_Within = (arg1: String, arg2: String, arg3: String) => {
+        def ST_Within(arg1: String, arg2: String, arg3: String): Boolean => {
             val r1 = arg1.split(",")
             val r1x = r1(0).toInt
             val r1y = r1(1).toInt
@@ -138,10 +138,10 @@ object SpatialQuery extends App{
             val dist = arg3.toDouble
             val pt_dist = Math.sqrt(((r2x-r1x)*(r2x-r1x))+((r2y-r1y)*(r2y-r1y)))
             if (pt_dist <= dist){
-                true
+                return true
             }
             else{
-                false
+                return false
             }
         }
         spark.udf.register("ST_Within",(pointString1:String, pointString2:String, distance:Double)=>(SpatialQuery.ST_Within(pointString1, pointString2, distance)))
