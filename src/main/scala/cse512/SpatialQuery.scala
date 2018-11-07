@@ -6,15 +6,15 @@ object SpatialQuery extends App{
     def ST_Contains(arg1: String, arg2: String): Boolean = {
             //split point
             val result = arg1.split(",")
-            val x = result(0).toInt
-            val y = result(1).toInt
+            val x = result(0).toDouble
+            val y = result(1).toDouble
 
             //split rectangle points
             val rect_vals = arg2.split(",")
-            val x1 = rect_vals(0).toInt
-            val y1 = rect_vals(1).toInt
-            val x2 = rect_vals(2).toInt
-            val y2 = rect_vals(3).toInt
+            val x1 = rect_vals(0).toDouble
+            val y1 = rect_vals(1).toDouble
+            val x2 = rect_vals(2).toDouble
+            val y2 = rect_vals(3).toDouble
 
             //Checks if the coordinates are within the rectangle
             if ((x >= x1 && x <= x2) && (y >= y1 && y <= y2)){
@@ -27,12 +27,12 @@ object SpatialQuery extends App{
 
     def ST_Within(arg1: String, arg2: String, arg3: Double): Boolean = {
         val r1 = arg1.split(",")
-        val r1x = r1(0).toInt
-        val r1y = r1(1).toInt
+        val r1x = r1(0).toDouble
+        val r1y = r1(1).toDouble
 
         val r2 = arg2.split(",")
-        val r2x = r2(0).toInt
-        val r2y = r2(1).toInt
+        val r2x = r2(0).toDouble
+        val r2y = r2(1).toDouble
 
         val dist = arg3
         val pt_dist = Math.sqrt(((r2x-r1x)*(r2x-r1x))+((r2y-r1y)*(r2y-r1y)))
